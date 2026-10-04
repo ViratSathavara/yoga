@@ -1,26 +1,523 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --app-font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --app-font-serif: var(--font-playfair), Georgia, serif;
+
+  --color-bg-ivory: #f7f5ed;
+  --color-sage: #566748;
+  --color-sage-hover: #435439;
+  --color-sage-accent: #6d795e;
+  --color-sage-tint: #e4e8db;
+  --color-sage-light: #e9ece2;
+  --color-dark-forest: #414c39;
+  --color-ink: #364132;
+  --color-ink-soft: #49483f;
+  --color-muted: #77796f;
+  --color-muted-light: #838177;
+  --color-border-subtle: #dedbd2;
+  --color-border-dark: #b9bea9;
+  --color-white-cream: #fbf8ef;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+
+  --color-ivory: #f7f5ed;
+  --color-ivory-warm: #fbf8ef;
+  --color-sage: #566748;
+  --color-sage-hover: #435439;
+  --color-sage-accent: #6d795e;
+  --color-sage-tint: #e4e8db;
+  --color-sage-light: #e9ece2;
+  --color-forest: #414c39;
+  --color-ink: #364132;
+  --color-muted: #77796f;
+  --color-border: #dedbd2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-bg-ivory);
+    color: var(--color-ink);
+    font-family: var(--app-font-sans);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6, .serif {
+    font-family: var(--app-font-serif);
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  em {
+    font-style: italic;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─────────────────────────────────────────────────────────────
+   SATTVA YOGA DESIGN SYSTEM & COMPONENT CLASSES
+───────────────────────────────────────────────────────────── */
+
+.wrap {
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(18px, 4vw, 36px);
+  padding-right: clamp(18px, 4vw, 36px);
+}
+
+.section-pad {
+  padding-top: clamp(60px, 8vw, 96px);
+  padding-bottom: clamp(60px, 8vw, 96px);
+}
+
+/* Eyebrow / Kicker */
+.eyebrow {
+  color: #6d795e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Section Headings */
+.section-heading {
+  max-width: 520px;
+}
+
+.section-heading h2 {
+  color: #38382f;
+  margin: 14px 0 16px;
+  font-size: clamp(34px, 4.5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.section-heading .section-intro {
+  color: #77796f;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 440px;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 46px;
+}
+
+/* Brand Lockup */
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-mark {
+  color: #60724f;
+  border: 1px solid #b9bea9;
+  border-radius: 50%;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  transition: all 0.2s ease;
+}
+
+.brand-lockup:hover .brand-mark {
+  border-color: #566748;
+  color: #566748;
+}
+
+.brand-lockup strong {
+  font-family: var(--app-font-serif);
+  letter-spacing: -0.03em;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  display: block;
+  color: #364132;
+}
+
+.brand-lockup small {
+  letter-spacing: 0.12em;
+  color: #77796f;
+  margin-top: 3px;
+  font-size: 9px;
+  display: block;
+  text-transform: uppercase;
+}
+
+/* Buttons & Links */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #566748;
+  color: #faf8f1;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 13px 22px;
+  border-radius: 4px;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #435439;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(67, 84, 57, 0.22);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #e4e8db;
+  color: #364132;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 13px 22px;
+  border-radius: 4px;
+  transition: transform 0.25s ease, background 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f2e9;
+  transform: translateY(-2px);
+}
+
+.text-action {
+  color: #536349;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.text-action:hover {
+  color: #364132;
+  gap: 12px;
+}
+
+.wa-text-button {
+  color: #536349;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #b9bea9;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.wa-text-button:hover {
+  color: #364132;
+  border-bottom-color: #566748;
+}
+
+/* Hero Section Specifics */
+.scroll-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: #d6d3c5;
+}
+
+.hero-film-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-film-poster {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-film-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(29, 37, 30, 0.84) 0%, rgba(32, 39, 31, 0.68) 42%, rgba(32, 39, 31, 0.25) 75%, transparent 100%),
+              linear-gradient(0deg, rgba(28, 35, 28, 0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content-box {
+  position: relative;
+  z-index: 10;
+  color: #f7f4e9;
+  max-width: 580px;
+  padding: 120px 0 100px;
+}
+
+.hero-content-box h1 {
+  color: #fbf8ef;
+  letter-spacing: -0.04em;
+  font-size: clamp(48px, 6.5vw, 84px);
+  line-height: 1.02;
+  margin: 0;
+}
+
+.hero-content-box h1 em {
+  color: #cdd8be;
+}
+
+.hero-sub {
+  color: rgba(250, 248, 239, 0.88);
+  font-size: clamp(13px, 1.4vw, 15px);
+  line-height: 1.75;
+  margin: 24px 0 32px;
+  max-width: 440px;
+}
+
+/* Trust Bar */
+.trust-bar {
+  background-color: #f5f3eb;
+  border-top: 1px solid #e6e2d8;
+  border-bottom: 1px solid #e6e2d8;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 20px;
+  border-right: 1px solid #e2dfd5;
+}
+
+.trust-item:last-child {
+  border-right: none;
+}
+
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #e9ece2;
+  color: #566748;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* Program Card */
+.program-card {
+  display: block;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.program-image {
+  background: #e4e1d5;
+  height: 310px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.program-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.program-card:hover .program-image img {
+  transform: scale(1.04);
+}
+
+.program-index {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  font-family: var(--app-font-serif);
+  font-size: 13px;
+  color: #f7f5ed;
+  background: rgba(40, 48, 36, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.program-arrow {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: #f7f5ed;
+  background: rgba(40, 48, 36, 0.6);
+  backdrop-filter: blur(4px);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s ease;
+}
+
+.program-card:hover .program-arrow {
+  transform: translate(2px, -2px);
+  background: #566748;
+}
+
+.program-copy {
+  padding: 20px 2px 0;
+}
+
+.program-copy h3 {
+  color: #38382f;
+  margin: 8px 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.program-copy p {
+  color: #77796f;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* Approach Section */
+.approach-section {
+  background-color: #e9ece2;
+}
+
+/* Numbers Band */
+.numbers-band {
+  background-color: #56664b;
+  color: #f5f1e5;
+}
+
+/* Instructor Section */
+.instructor-section {
+  background-color: #f7f5ed;
+}
+
+/* Studio Section */
+.studio-section {
+  background-color: #f1efe7;
+}
+
+/* Benefits Section */
+.benefits-section {
+  background-color: #f7f5ed;
+}
+
+.benefit-card {
+  border-right: 1px solid #dedbd0;
+  padding: 30px 24px 20px 0;
+}
+
+.benefit-card:last-child {
+  border-right: none;
+}
+
+/* Mantra Section */
+.mantra-section {
+  background-color: #ebece3;
+}
+
+/* Testimonial Section */
+.testimonials-section {
+  background-color: #eeeee6;
+}
+
+/* Trial Banner */
+.trial-banner {
+  background-color: #dfe5d8;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #414c39;
+  color: #f2f1e7;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  background-color: #526449;
+  color: #f5f2e8;
+  border-radius: 30px;
+  padding: 12px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 26px rgba(56, 68, 43, 0.28);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px);
+  background-color: #435439;
+}
+
+.wa-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #72d966;
+  position: relative;
+}
+
+.wa-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: rgba(114, 217, 102, 0.45);
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Hero Stage Content Transitions */
+@keyframes heroStageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-stage-swap {
+  animation: heroStageFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
